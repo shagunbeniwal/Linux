@@ -1,0 +1,12 @@
+Changing the bash prompt to show IP
+To get the following output as your shell prompt --> [root@192.168.1.9 ~]# 
+
+Theory :
+The bash shell prompt comes the way it is because of the $PS1 variable in your linux environment.
+You can echo from command line and check the present value of PS1 variable by --> echo $PS1
+
+Step 1: echo $PS1 value and save the value to a file, it is always good to take a back up of files and config before changing system config.
+Step 2: sudo nano ~/.bashrc
+Step 3: Add the following line to the end of the file
+export PS1="[\u@$(ifconfig | grep "inet " | grep -v 127.0.0. | awk '{print $2}' | tr ":" " " | awk '{print $2}') \W]#"
+Step 4: Restart the shell session to see the changes.
